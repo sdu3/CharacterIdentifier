@@ -30,9 +30,9 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 	  public void run() {
 
 		  //file to be parsed
-		String csvFile = "/Users/mzyin/CharacterIdentifier/entityfacts.csv";
+		String csvFile = "/Users/sdu17/Documents/JavaWorkspace/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
-		String cvsSplitBy = ",";
+		String SplitBy = ",";
 		
 		
 		try {
