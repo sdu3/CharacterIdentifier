@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,31 +25,30 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 		//CharacterIdentifier hex = new CharacterIdentifier();
 		categories.run();
 		//hex.run();
-
 	  }
 
 	  public void run() {
 
 		  //file to be parsed
-		String csvFile = "/Users/sdu17/Documents/JavaWorkspace/CharacterIdentifier/entityfacts.csv";
+		String csvFile = "/Users/mzyin/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
-		String line = "";
 		String cvsSplitBy = ",";
+		
 		
 		try {
 			//file reader
 			br = new BufferedReader(new FileReader(csvFile));
+			String line = br.readLine();
 			
 			//read file line by line
 			while ((line = br.readLine()) != null) 
 				{
 			     // use comma as separator, read every line
-				String[] category = line.split(cvsSplitBy);
-				//String[] hex = line.split(cvsSplitBy);
+				String[] category = line.split(",,");
 
 				//print every line
 				System.out.println("category:" + category[0]);
-				//System.out.println("hex:" + hex[1]);
+				
 				}
 			
 			} catch (FileNotFoundException e) 
@@ -76,3 +76,4 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 			}
 	  }  
 }
+
