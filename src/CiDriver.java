@@ -6,13 +6,13 @@ public class CiDriver
 		 {
 					//creates frame
 				    Frame d = new Frame();
-				 //creates ShowFonts panel, creates everything in ShowFonts
-				   CharacterIdentifier p = new CharacterIdentifier();
+				   
+				   CharacterIdentifier categories = new CharacterIdentifier();
+					categories.run();
 				   
 				   //add panel & frame
-				    d.addPanel(p);
-					  
-					  d.showFrame();
+				    d.addPanel(categories);
+					 d.showFrame();
 				 }
 
 }

@@ -19,13 +19,16 @@ import java.io.IOException;
 
 public class CharacterIdentifier extends JPanel implements ActionListener
 {
-	public static void main(String[] args) {
+	public CharacterIdentifier() {
+	}
+	/*public static void main(String[] args) {
 
 		CharacterIdentifier categories = new CharacterIdentifier();
 		//CharacterIdentifier hex = new CharacterIdentifier();
 		categories.run();
 		//hex.run();
 	  }
+	*/
 
 	  public void run() {
 
