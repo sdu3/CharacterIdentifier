@@ -17,7 +17,10 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class CharacterIdentifier extends JPanel implements ActionListener
+import javax.swing.JTextArea;
+import java.util.Scanner;
+
+public class CharacterIdentifier extends JFrame implements ActionListener
 {
 	public static void main(String[] args) {
 
@@ -25,14 +28,15 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 		//CharacterIdentifier hex = new CharacterIdentifier();
 		categories.run();
 		//hex.run();
-	  }
+	}
+	
 
 	  public void run() {
 
 		  //file to be parsed
 		String csvFile = "/Users/mzyin/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
-		String cvsSplitBy = ",";
+		//String cvsSplitBy = ",";
 		
 		
 		try {
@@ -40,16 +44,22 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 			br = new BufferedReader(new FileReader(csvFile));
 			String line = br.readLine();
 			
-			//read file line by line
+			
+			//read file line by line - change how split 
 			while ((line = br.readLine()) != null) 
 				{
 			     // use comma as separator, read every line
-				String[] category = line.split(",,");
+				String[] category = line.split(",");
 
 				//print every line
-				System.out.println("category:" + category[0]);
-				
+				System.out.println(category[0]);
+				System.out.println(line);
 				}
+		
+			
+			JTextArea input = new JTextArea("Input character here");
+			Container c = getContentPane();
+			c.add(input, BorderLayout.CENTER);
 			
 			} catch (FileNotFoundException e) 
 				{
