@@ -21,17 +21,16 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 {
 	public CharacterIdentifier() {
 	}
+	 
 	/*public static void main(String[] args) {
 
 		CharacterIdentifier categories = new CharacterIdentifier();
-		//CharacterIdentifier hex = new CharacterIdentifier();
 		categories.run();
-		//hex.run();
 	  }
 	*/
-
+	 
 	  public void run() {
-
+		
 		  //file to be parsed
 		String csvFile = "/Users/sdu17/Documents/JavaWorkspace/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
@@ -77,6 +76,26 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 						}
 				}
 			}
+		 
+		ConvertCharacter a = new ConvertCharacter();
+		char input = 'é';
+		System.out.println(a.convert(input));
+
 	  }  
+	 
+	 //System.out.println(a.convert(input));
+		
+	  /*public void actionPerformed(ActionEvent event)
+	  {
+		  ConvertCharacter a = new ConvertCharacter();
+			char input = 'é';
+			
+		//CAN'T ACCESS OUTPUT EVEN WITH RETURN?
+			System.out.println(a.convert(input));
+		   
+			/*take in input 
+		   * run function with input 
+		   * TextArea.setText to output of function (from convert character)
+	  } */
 }
 
