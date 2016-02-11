@@ -24,4 +24,11 @@ public class Frame extends JFrame
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  }
 
+<<<<<<< HEAD
 }
+||||||| merged common ancestors
+}
+>>>>>>> bd9ebc7fc54e02b2ad6ba11698d8f3c3040d55bd
+=======
+}
+>>>>>>> bea70a46b0c86d84aaeb430d7a3739febdedb0e6

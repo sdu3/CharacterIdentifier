@@ -22,21 +22,39 @@ import java.util.Scanner;
 
 public class CharacterIdentifier extends JFrame implements ActionListener
 {
-	public static void main(String[] args) {
+	public CharacterIdentifier() {
+	}
+	 
+	/*public static void main(String[] args) {
 
 		CharacterIdentifier categories = new CharacterIdentifier();
-		//CharacterIdentifier hex = new CharacterIdentifier();
 		categories.run();
+<<<<<<< HEAD
 		//hex.run();
 	}
 	
 
-	  public void run() {
+||||||| merged common ancestors
+		//hex.run();
+	  }
 
+=======
+	  }
+	*/
+	 
+>>>>>>> bea70a46b0c86d84aaeb430d7a3739febdedb0e6
+	  public void run() {
+		
 		  //file to be parsed
-		String csvFile = "/Users/mzyin/CharacterIdentifier/entityfacts.csv";
+		String csvFile = "/Users/sdu17/Documents/JavaWorkspace/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
+<<<<<<< HEAD
 		//String cvsSplitBy = ",";
+||||||| merged common ancestors
+		String cvsSplitBy = ",";
+=======
+		String SplitBy = ",";
+>>>>>>> bea70a46b0c86d84aaeb430d7a3739febdedb0e6
 		
 		
 		try {
@@ -84,6 +102,26 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 						}
 				}
 			}
+		 
+		ConvertCharacter a = new ConvertCharacter();
+		char input = 'é';
+		System.out.println(a.convert(input));
+
 	  }  
+	 
+	 //System.out.println(a.convert(input));
+		
+	  /*public void actionPerformed(ActionEvent event)
+	  {
+		  ConvertCharacter a = new ConvertCharacter();
+			char input = 'é';
+			
+		//CAN'T ACCESS OUTPUT EVEN WITH RETURN?
+			System.out.println(a.convert(input));
+		   
+			/*take in input 
+		   * run function with input 
+		   * TextArea.setText to output of function (from convert character)
+	  } */
 }
 
