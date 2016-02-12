@@ -1,3 +1,5 @@
+import javax.swing.JFrame;
+
 /*import java.awt.EventQueue;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,12 +13,13 @@ public class CiDriver
 {
 		public static void main(String[] args)
 		 {
-					//creates frame
-				    Frame d = new Frame();
-				   
-				    //read csv
-				   CharacterIdentifier categories = new CharacterIdentifier();
-					categories.run();
+			//creates and shows frame
+			JFrame d = new CharacterIdentifier();
+		    d.show();
+				    
+		    //read csv
+			   CharacterIdentifier categories = new CharacterIdentifier();
+			   categories.run();
 					
 					/*convert character
 					ConvertCharacter a = new ConvertCharacter();
@@ -26,9 +29,8 @@ public class CiDriver
 					System.out.println(a.convert(input));
 					*/
 				   
-				   //add panel & frame
 				    //d.addPanel(categories);
-					d.showFrame();
+					
 				 }
 
 }

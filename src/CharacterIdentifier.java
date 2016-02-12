@@ -49,54 +49,64 @@ import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 import javax.swing.JTextArea;
 
-     
 public class CharacterIdentifier extends JFrame implements ActionListener
 {	
+	//create variables
 	JTextField field = new JTextField();
-	String input;
+	char input;
 	JTextArea character = new JTextArea();
-	private JButton ok = new JButton("OK");
+	private JButton ok = new JButton("View information");
+	String stringInput;
+	JTextArea output = new JTextArea();
+	String info;
 	
 	public CharacterIdentifier() {
+		
+		//title of tool bar, size of window
 		 setTitle("Character Identifier");
 		    setSize(1500, 1000);
+		    
+		    //WHAT DOES THIS WINDOW LISTENER/ADAPTOR DO?
 		    addWindowListener(new WindowAdapter() {
 		      public void windowClosing(WindowEvent e) {
 		        System.exit(0);
 		      }
 		    }); 
 		 
-		 field.setToolTipText("Enter character here:");   
+		 field.setToolTipText("Enter character here:");  
+		 
+		 //WHAT/WHERE ARE THESE CONTAINERS?
 		 Container container;
 		 container = getContentPane();
 		 container.add(field, BorderLayout.NORTH);
 		
-		
+		 //make button an event generator
 		 ok.addActionListener(new ButtonListener());
 		 
+		 //add button to panel
+		 //WHY ARE THERE 2 PANELS? 
 		 JPanel c = new JPanel();
 		 JPanel o = new JPanel();
 		 o.add(ok);
 		 getContentPane().add(o);
+		 character.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
 		 c.add(character);
 		 getContentPane().add(c);
 		 c.setPreferredSize(new Dimension(500,500));
 		
 		container.add(o, BorderLayout.SOUTH);
 		container.add(c, BorderLayout.WEST);
+		output.setEditable(false);
+		
+		getContentPane().add(output, BorderLayout.CENTER);
 		
 	}
 	 
-	/*public static void main(String[] args) {
-		CharacterIdentifier categories = new CharacterIdentifier();
-		categories.run();
-	  }
-	*/
-	
+	//function to read CSV file and print out contents
 	  public void run() {
 		
 		//file to be parsed
-		String csvFile = "/Users/mzyin/Downloads/com/mindprod/entities/entityfacts.csv";
+		String csvFile = "/Users/sdu17/Documents/JavaWorkspace/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
 		//String SplitBy = ",";
 		
@@ -142,64 +152,30 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 						}
 				}
 			}
-		 
-		ConvertCharacter a = new ConvertCharacter();
-		char input = 'é';
-		System.out.println(a.convert(input));
-
 	  }  
-	  
-	  public static void main(String[] args){
-					//creates frame
-				    JFrame d = new CharacterIdentifier();
-				    d.show();
-				   
-				    //read csv
-				    
-				   CharacterIdentifier categories = new CharacterIdentifier();
-					categories.run();
-					
-					/*convert character
-					ConvertCharacter a = new ConvertCharacter();
-					char input = 'é';
-					
-				//CAN'T ACCESS OUTPUT EVEN WITH RETURN?
-					System.out.println(a.convert(input));
-					*/
-				   
-				   //add panel & frame
-				    //d.addPanel(categories);
-					//d.showFrame();
-				 }
-	  
+	 
+	  //action listener reaction
 	  private class ButtonListener implements ActionListener {
 		    public void actionPerformed(ActionEvent e) {
-		    	  JButton src = (JButton) e.getSource();
+		    	 
+		    	//currently only one event generator so not necessary, but get source of event
+		    	JButton src = (JButton) e.getSource();
 
 		    	    if (src == ok) 
 		    	    {
-		    	    	input = field.getText(); 
-		    	    character.setText(input);
-		    	    character.setVisible(true);
+		    	    	stringInput = field.getText(); 
+			    	    char input = stringInput.charAt(0);
+			    	    System.out.println(input);
+			    	    character.setText("Character in larger font: " + stringInput);
+			    	    character.setVisible(true);
+		    	    
+		    	    ConvertCharacter a = new ConvertCharacter();
+		    	    info = a.convert(input);
+		    	    output.setText("Here is the information regarding the character \"" + input + "\"" + "\n" + info);
+		    	    //System.out.println(a.convert(input));
 		    	    	
 		    	    }
 		    }
 	 }
 
 }
-
-	 
-	 //System.out.println(a.convert(input));
-		
-	  /*public void actionPerformed(ActionEvent event)
-	  {
-		  ConvertCharacter a = new ConvertCharacter();
-			char input = 'é';
-			
-			System.out.println(a.convert(input));
-		   
-			/*take in input 
-		   * run function with input 
-		   * TextArea.setText to output of function (from convert character)
-	  } */
-

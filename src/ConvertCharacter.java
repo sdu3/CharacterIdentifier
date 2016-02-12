@@ -5,18 +5,7 @@ import java.lang.*;
  */
 public class ConvertCharacter
 {
-	/*can ignore - I used the following to test
-	 * public static void main(String[] args)
-	 {
-		ConvertCharacter a = new ConvertCharacter();
-		
-		char input = 'é';
-	
-		System.out.println(a.convert(input));
-	 }
-	*/
-	 
-	
+
 	 public String convert(char input)
      {   
           //convert char (input) to an int and temporarily store in i. This int is the decimal Unicode
@@ -36,10 +25,10 @@ public class ConvertCharacter
           String hexUnicode= "0x00" + UTF;
           
           //final output
-          String output = "Character: " + input + "\n" + "decimal Unicode: " + decUnicode + "\n"
-        			+ "hex Unicode: " + hexUnicode
-        			+  "\n "+ "Decimal entity: " 
-        		  + decEntity + "\n " + "Hex entity: " + hexEntity + "\n"
+          String output = "\n" + "Decimal unicode: " + decUnicode + "\n"
+        			+ "Hex unicode: " + hexUnicode
+        			+  "\n"+ "Decimal entity: " 
+        		  + decEntity + "\n" + "Hex entity: " + hexEntity + "\n"
         		  + "Java code:" + Java + "\n"
         		  + "UTF-8: "  + UTF;
           //System.out.println(output);
