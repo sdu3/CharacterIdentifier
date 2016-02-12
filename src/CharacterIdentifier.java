@@ -51,12 +51,14 @@ import javax.swing.text.*;
 import java.awt.*;              
 import java.awt.event.*;      
      
+
 public class CharacterIdentifier extends JFrame implements ActionListener
 {	
 	JTextField field = new JTextField();
-	String input;
+	char input;
 	JTextArea character = new JTextArea();
 	private JButton ok = new JButton("OK");
+	String stringInput;
 	
 	public CharacterIdentifier() {
 		 setTitle("Character Identifier");
@@ -88,11 +90,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		
 	}
 	 
-	/*public static void main(String[] args) {
-		CharacterIdentifier categories = new CharacterIdentifier();
-		categories.run();
-	  }
-	*/
+
 	
 	  public void run() {
 		
@@ -141,7 +139,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 						}
 				}
 			}
-		 
+		//convert character 
 		ConvertCharacter a = new ConvertCharacter();
 		char input = 'é';
 		System.out.println(a.convert(input));
@@ -177,10 +175,11 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 
 		    	    if (src == ok) 
 		    	    {
-		    	    	input = field.getText(); 
-		    	    character.setText(input);
+		    	    stringInput = field.getText(); 
+		    	    char input = stringInput.charAt(0);
+		    	    System.out.println(input);
+		    	    character.setText(stringInput);
 		    	    character.setVisible(true);
-		    	    	
 		    	    }
 		    }
 	 }
