@@ -1,4 +1,6 @@
-import java.awt.EventQueue;
+/*import java.awt.EventQueue;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /*
  * This code is the driver. It creates the window/frame, a character identifier object (which has most of our functions), 
@@ -25,8 +27,8 @@ public class CiDriver
 					*/
 				   
 				   //add panel & frame
-				    d.addPanel(categories);
-					 d.showFrame();
+				    //d.addPanel(categories);
+					d.showFrame();
 				 }
 
 }
