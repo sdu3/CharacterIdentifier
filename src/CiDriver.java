@@ -1,4 +1,6 @@
 import java.awt.EventQueue;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class CiDriver
 {
@@ -20,8 +22,8 @@ public class CiDriver
 					*/
 				   
 				   //add panel & frame
-				    d.addPanel(categories);
-					 d.showFrame();
+				    //d.addPanel(categories);
+					d.showFrame();
 				 }
 
 }
