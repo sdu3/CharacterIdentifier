@@ -1,5 +1,10 @@
 import java.awt.EventQueue;
 
+/*
+ * This code is the driver. It creates the window/frame, a character identifier object (which has most of our functions), 
+ * and runs the function "run," which currently prints out all things in the csv file
+ */
+
 public class CiDriver
 {
 		public static void main(String[] args)

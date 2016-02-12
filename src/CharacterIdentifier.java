@@ -1,4 +1,9 @@
-
+/*
+ * this code reads the CSV file and prints it out (read CSV and print out part Maggie and I worked on together).
+ * eventually it will also have an action listener (event generator = button, action listener = JPanel)
+ * and upon the action event occurring, the "convert character" function will run and the info from 
+ * the convert function's output will be placed in a JTextArea
+ */
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,7 +45,7 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 		try {
 			//file reader
 			br = new BufferedReader(new FileReader(csvFile));
-			String line = br.readLine();
+			String line;
 			
 			//read file line by line
 			while ((line = br.readLine()) != null) 
@@ -57,12 +62,13 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 				{
 				e.printStackTrace();
 				} 
-		
+		//will print out upon error - catch own error
 			catch (IOException e) 
 				{
 				e.printStackTrace();
 				} 
 		
+		//runs after try
 			finally 
 			{
 				if (br != null) 
@@ -90,7 +96,6 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 		  ConvertCharacter a = new ConvertCharacter();
 			char input = 'é';
 			
-		//CAN'T ACCESS OUTPUT EVEN WITH RETURN?
 			System.out.println(a.convert(input));
 		   
 			/*take in input 

@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
-	
+	/*
+	 * this code just sets up the frame
+	 */
 public class Frame extends JFrame
 {
 	  private Container c;
