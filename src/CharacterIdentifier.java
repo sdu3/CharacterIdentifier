@@ -75,6 +75,7 @@ public class CharacterIdentifier extends JPanel implements ActionListener
 				{
 					try 
 					{
+						//closes reader
 						br.close();
 					} catch (IOException e) 
 						{
