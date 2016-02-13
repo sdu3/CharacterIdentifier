@@ -35,4 +35,22 @@ public class ConvertCharacter
          
           return output;
      }
+	 
+	 public String getHex(char input)
+     {   
+          //convert char (input) to an int and temporarily store in i. This int is the decimal Unicode
+          int  i = (int) input; 
+          
+          //convert int to Integer
+          Integer o = new Integer(i);
+          
+          //this function converts the dec Unicode to the UTF-8 code
+          String UTF = Integer.toHexString(o);
+          
+          //all other info we want based on prefixes
+          String hexUnicode= "0x00" + UTF;
+          
+          //final output
+          return hexUnicode;
+     }
 }

@@ -116,14 +116,45 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 			br = new BufferedReader(new FileReader(csvFile));
 			String line;
 			
-			//read file line by line
+			ConvertCharacter b = new ConvertCharacter();
+			
+			//read file line by line until there is nothing to read 
 			while ((line = br.readLine()) != null) 
 				{
 			     // use comma as separator, read every line
-				String[] category = line.split(",,");
-
-				//print every line
-				System.out.println("category:" + category[0]);
+				String[] category = line.split(",");
+				
+				/*String hexU = b.getHex(input);
+				System.out.println("hex u" + hexU);
+				
+				if (category[1] == hexU)
+				{
+					System.out.println("alpha entity:" + category[3]);
+					System.out.println("description:" + category[4]);
+					break;
+				}
+				*/
+				
+				if (category.length==2)
+				{
+					System.out.println("hex:" + category[1]);
+				}
+				
+				if (category.length==4)
+				{
+					System.out.println("hex:" + category[1]);
+					System.out.println("alpha entity:" + category[3]);
+				}
+				
+				if (category.length==5)
+				{
+					System.out.println("hex:" + category[1]);
+					System.out.println("alpha entity:" + category[3]);
+					System.out.println("description:" + category[4]);
+				}
+				
+				
+				
 				
 				}
 			
@@ -157,22 +188,27 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 	  //action listener reaction
 	  private class ButtonListener implements ActionListener {
 		    public void actionPerformed(ActionEvent e) {
-		    	 
+	    	    
 		    	//currently only one event generator so not necessary, but get source of event
 		    	JButton src = (JButton) e.getSource();
 
 		    	    if (src == ok) 
-		    	    {
+		    	    {	
+			    	    
 		    	    	stringInput = field.getText(); 
 			    	    char input = stringInput.charAt(0);
 			    	    System.out.println(input);
 			    	    character.setText("Character in larger font: " + stringInput);
 			    	    character.setVisible(true);
+			    	    
+			    	    CharacterIdentifier categories = new CharacterIdentifier();
+			    	    categories.run();
 		    	    
 		    	    ConvertCharacter a = new ConvertCharacter();
 		    	    info = a.convert(input);
 		    	    output.setText("Here is the information regarding the character \"" + input + "\"" + "\n" + info);
 		    	    //System.out.println(a.convert(input));
+		    	   
 		    	    	
 		    	    }
 		    }

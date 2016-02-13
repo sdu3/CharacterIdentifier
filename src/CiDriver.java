@@ -18,8 +18,8 @@ public class CiDriver
 		    d.show();
 				    
 		    //read csv
-			   CharacterIdentifier categories = new CharacterIdentifier();
-			   categories.run();
+			   //CharacterIdentifier categories = new CharacterIdentifier();
+			   //categories.run();
 					
 					/*convert character
 					ConvertCharacter a = new ConvertCharacter();
