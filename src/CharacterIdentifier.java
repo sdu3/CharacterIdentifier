@@ -124,7 +124,9 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 			     // use comma as separator, read every line
 				String[] category = line.split(",");
 				
-				/*String hexU = b.getHex(input);
+				/*get input, get hex
+				CharacterIdentifier c = new CharacterIdentifier();
+				String hexU = b.getHex(c.getInput());
 				System.out.println("hex u" + hexU);
 				
 				if (category[1] == hexU)
@@ -134,6 +136,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 					break;
 				}
 				*/
+				
 				
 				if (category.length==2)
 				{
@@ -208,10 +211,16 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		    	    info = a.convert(input);
 		    	    output.setText("Here is the information regarding the character \"" + input + "\"" + "\n" + info);
 		    	    //System.out.println(a.convert(input));
-		    	   
 		    	    	
 		    	    }
 		    }
 	 }
+	  
+	  public char getInput()
+	  {
+		stringInput = field.getText(); 
+  	    char input = stringInput.charAt(0);
+  	    return input;
+	  }
 
 }
