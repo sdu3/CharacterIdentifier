@@ -1,6 +1,8 @@
 import java.awt.*;
 import javax.swing.*;
-	
+	/*
+	 * this code just sets up the frame
+	 */
 public class Frame extends JFrame
 {
 	  private Container c;
@@ -11,7 +13,7 @@ public class Frame extends JFrame
 	  }
 
 	  public void addPanel(JPanel p){
-	    p.setPreferredSize(new Dimension(700,700));
+	    p.setPreferredSize(new Dimension(500,500));
 	    //color background
 	    p.setBackground(new Color(248,248,255));
 	    //add panel to frame
@@ -25,6 +27,7 @@ public class Frame extends JFrame
 	  }
 
 }
+
 
 
 
