@@ -17,7 +17,7 @@ public class CiDriver
 			JFrame d = new CharacterIdentifier();
 		    d.show();
 		    d.setBackground(Color.WHITE);
-				    
+		    
 		    //read csv
 			   //CharacterIdentifier categories = new CharacterIdentifier();
 			   //categories.run();
