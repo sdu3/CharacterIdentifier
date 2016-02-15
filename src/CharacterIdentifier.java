@@ -57,6 +57,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 	private JButton ok = new JButton("View information");
 	String stringInput;
 	JTextArea output = new JTextArea();
+	JTextArea output2 = new JTextArea();
 	String info;
 	JLabel enter = new JLabel();
 	JTextArea filler = new JTextArea();
@@ -179,14 +180,33 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 				//get input, get hex
 				//CharacterIdentifier c = new CharacterIdentifier();
 				//hexU = b.getHex(input);
-				System.out.println("from try function" + hexU);
+				//System.out.println("from try function" + hexU);
 				
-				//NOTHING MATCHES? E.G. POUND SIGN ISN'T SAME HEX
+				//remove white space
+				category[1] = category[1].replaceAll("\\s","");
+				category[3] = category[3].replaceAll("\\s","");
+				category[4] = category[4].trim();
+				//System.out.println(category[1]);
+				
+				//compare
 				if (category[1].equals(hexU))
 				{
-					System.out.println("alpha entity:" + category[3]);
-					System.out.println("description:" + category[4]);
+					//if no alpha entity
+					if (category[3].equals(""))
+					{
+						System.out.println("alpha entity:" + "none");
+						System.out.println("description:" + category[4]);
+						break;
+					}
+					
+					else
+					
+					{
+					String alpha = ("alpha entity:" + category[3]);
+					String description = ("description:" + category[4]);
+					System.out.println(alpha + "\n" + description);
 					break;
+					}
 				}
 				
 				
