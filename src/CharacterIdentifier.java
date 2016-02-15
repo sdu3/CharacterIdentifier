@@ -1,4 +1,3 @@
-
 /*
  * this code reads the CSV file and prints it out (read CSV and print out part Maggie and I worked on together).
  * eventually it will also have an action listener (event generator = button, action listener = JPanel)
@@ -59,8 +58,13 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 	String stringInput;
 	JTextArea output = new JTextArea();
 	String info;
+	JLabel enter = new JLabel();
+	JTextArea filler = new JTextArea();
+	String hexU;
+	ConvertCharacter b = new ConvertCharacter();
 	
 	public CharacterIdentifier() {
+		enter.setLabelFor(field);
 		
 		//title of tool bar, size of window
 		 setTitle("Character Identifier");
@@ -68,10 +72,11 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		    
 		    //WHAT DOES THIS WINDOW LISTENER/ADAPTOR DO?
 		    addWindowListener(new WindowAdapter() {
-		      public void windowClosing(WindowEvent e) {
-		        System.exit(0);
+		    public void windowClosing(WindowEvent e) {
+		    System.exit(0);
 		      }
 		    }); 
+		 field.setHorizontalAlignment(SwingConstants.LEFT);
 		 
 		 field.setToolTipText("Enter character here:");  
 		 
@@ -85,27 +90,75 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		 
 		 //add button to panel
 		 //WHY ARE THERE 2 PANELS? 
-		 JPanel c = new JPanel();
-		 JPanel o = new JPanel();
-		 o.add(ok);
-		 getContentPane().add(o);
-		 character.setFont(new Font("Lucida Grande", Font.PLAIN, 25));
-		 c.add(character);
-		 getContentPane().add(c);
-		 c.setPreferredSize(new Dimension(500,500));
-		
-		container.add(o, BorderLayout.SOUTH);
-		container.add(c, BorderLayout.WEST);
-		output.setEditable(false);
-		
-		getContentPane().add(output, BorderLayout.CENTER);
+		 JPanel largefont = new JPanel();
+		 largefont.setBackground(SystemColor.window);
+		 JPanel button = new JPanel();
+		 button.add(ok);
+		 getContentPane().add(button);
+		 JPanel fill = new JPanel();
+		 fill.add(filler);
+		 getContentPane().add(fill);
+		 character.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		 largefont.add(character);
+		 getContentPane().add(largefont);
+		 enter.setBackground(Color.LIGHT_GRAY);
+		 enter.setVerticalAlignment(SwingConstants.BOTTOM);
+		 enter.setHorizontalAlignment(SwingConstants.CENTER);
+		 enter.setText("Enter character here");
+		 container.setBackground(Color.WHITE);
+
+		 container.add(largefont, BorderLayout.WEST);
+		 container.add(button, BorderLayout.SOUTH);
+		 container.add(enter, BorderLayout.CENTER); //how do i get this to show up under the input line?
+		 filler.setBackground(SystemColor.window);
+		 container.add(fill, BorderLayout.EAST);
+		 output.setTabSize(10);
+		 output.setWrapStyleWord(true);
+		 output.setLineWrap(true);
+		 output.setEditable(false);
+		 getContentPane().add(output, BorderLayout.CENTER);
 		
 	}
 	 
+
+	  //action listener reaction
+	  private class ButtonListener implements ActionListener {
+		    public void actionPerformed(ActionEvent e) {
+	    	    
+		    	//currently only one event generator so not necessary, but get source of event
+		    	JButton src = (JButton) e.getSource();
+
+		    	    if (src == ok) 
+		    	    {	
+		    	    	
+		    	    	
+		    	    	stringInput = field.getText(); 
+			    	    char input = stringInput.charAt(0);
+			    	    System.out.println("from button listener, input: " + input);
+			    	    
+			    	    character.setText("Character in larger font: " + stringInput);
+			    	    character.setVisible(true);
+			    	   
+			    	    CharacterIdentifier categories = new CharacterIdentifier();
+			    	    categories.run(input);
+			    	    
+			    	  //information independent of CSV file
+		    	        ConvertCharacter a = new ConvertCharacter();
+		    	        info = a.convert(input);
+		    	        output.setText("Here is the information regarding the character \"" + input + "\"" + "\n" + info);
+		    	        output.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		    	        output.setBackground(Color.WHITE);
+		    	       
+		    	    }
+		    }
+	 }
+	  
 	//function to read CSV file and print out contents
-	  public void run() {
+	  public void run(char input) {
 		
-		//file to be parsed
+		//get hex of input
+		hexU = b.getHex(input);
+		System.out.println("from run function" + hexU);
 		String csvFile = "/Users/sdu17/Documents/JavaWorkspace/CharacterIdentifier/entityfacts.csv";
 		BufferedReader br = null;
 		//String SplitBy = ",";
@@ -116,29 +169,29 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 			br = new BufferedReader(new FileReader(csvFile));
 			String line;
 			
-			ConvertCharacter b = new ConvertCharacter();
-			
 			//read file line by line until there is nothing to read 
 			while ((line = br.readLine()) != null) 
 				{
+					
 			     // use comma as separator, read every line
 				String[] category = line.split(",");
 				
-				/*get input, get hex
-				CharacterIdentifier c = new CharacterIdentifier();
-				String hexU = b.getHex(c.getInput());
-				System.out.println("hex u" + hexU);
+				//get input, get hex
+				//CharacterIdentifier c = new CharacterIdentifier();
+				//hexU = b.getHex(input);
+				System.out.println("from try function" + hexU);
 				
-				if (category[1] == hexU)
+				//NOTHING MATCHES? E.G. POUND SIGN ISN'T SAME HEX
+				if (category[1].equals(hexU))
 				{
 					System.out.println("alpha entity:" + category[3]);
 					System.out.println("description:" + category[4]);
 					break;
 				}
-				*/
 				
 				
-				if (category.length==2)
+				//to test see if can access appropriate columns of CSV file
+				/*if (category.length==2)
 				{
 					System.out.println("hex:" + category[1]);
 				}
@@ -155,9 +208,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 					System.out.println("alpha entity:" + category[3]);
 					System.out.println("description:" + category[4]);
 				}
-				
-				
-				
+				*/
 				
 				}
 			
@@ -187,34 +238,6 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 				}
 			}
 	  }  
-	 
-	  //action listener reaction
-	  private class ButtonListener implements ActionListener {
-		    public void actionPerformed(ActionEvent e) {
-	    	    
-		    	//currently only one event generator so not necessary, but get source of event
-		    	JButton src = (JButton) e.getSource();
-
-		    	    if (src == ok) 
-		    	    {	
-			    	    
-		    	    	stringInput = field.getText(); 
-			    	    char input = stringInput.charAt(0);
-			    	    System.out.println(input);
-			    	    character.setText("Character in larger font: " + stringInput);
-			    	    character.setVisible(true);
-			    	    
-			    	    CharacterIdentifier categories = new CharacterIdentifier();
-			    	    categories.run();
-		    	    
-		    	    ConvertCharacter a = new ConvertCharacter();
-		    	    info = a.convert(input);
-		    	    output.setText("Here is the information regarding the character \"" + input + "\"" + "\n" + info);
-		    	    //System.out.println(a.convert(input));
-		    	    	
-		    	    }
-		    }
-	 }
 	  
 	  public char getInput()
 	  {
