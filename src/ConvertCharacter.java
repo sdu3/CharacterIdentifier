@@ -1,11 +1,12 @@
 import java.lang.*;
 /*
- * This code takes in a character (currently the character is manually inputed in the code, not integrated with interface yet)
+ * This code takes in a character 
  * and outputs the Unicode, entities, Java code, and UTF-8
  */
 public class ConvertCharacter
 {
 
+	//function to get all CSV file independent information
 	 public String convert(char input)
      {   
           //convert char (input) to an int and temporarily store in i. This int is the decimal Unicode
@@ -15,7 +16,7 @@ public class ConvertCharacter
           Integer o = new Integer(i);
           Integer decUnicode = o;
           
-          //this function converts the dec Unicode to the UTF-8 code
+          //this function converts the dec Unicode to the UTF code
           String UTF = Integer.toHexString(o);
           
           //all other info we want based on prefixes
@@ -31,11 +32,11 @@ public class ConvertCharacter
         		  + decEntity + "\n" + "Hex entity: " + hexEntity + "\n"
         		  + "Java code:" + Java + "\n"
         		  + "UTF-8: "  + UTF;
-          //System.out.println(output);
-         
+      
           return output;
      }
 	 
+	 //function to getHex (used in "run" function to compare)
 	 public String getHex(char input)
      {   
           //convert char (input) to an int and temporarily store in i. This int is the decimal Unicode
