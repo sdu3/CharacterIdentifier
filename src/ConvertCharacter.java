@@ -25,12 +25,12 @@ public class ConvertCharacter
           String hexUnicode= "0x00" + UTF;
           
           //final output
-          String output = "\n" + "Decimal unicode: " + decUnicode + "\n"
-        			+ "Hex unicode: " + hexUnicode
-        			+  "\n"+ "Decimal entity: " 
-        		  + decEntity + "\n" + "Hex entity: " + hexEntity + "\n"
-        		  + "Java code:" + Java + "\n"
-        		  + "UTF-8: "  + UTF;
+          String output = "\n" + "   Decimal unicode: " + decUnicode + "\n"
+        			+ "   Hex unicode: " + hexUnicode
+        			+  "\n"+ "   Decimal entity: " 
+        		  + decEntity + "\n" + "   Hex entity: " + hexEntity + "\n"
+        		  + "   Java code:" + Java + "\n"
+        		  + "   UTF-8: "  + UTF;
           //System.out.println(output);
          
           return output;
@@ -47,8 +47,24 @@ public class ConvertCharacter
           //this function converts the dec Unicode to the UTF-8 code
           String UTF = Integer.toHexString(o);
           
-          //all other info we want based on prefixes
-          String hexUnicode= "0x00" + UTF;
+          //String hexUnicode= "0x00" + UTF;
+          
+         String hexUnicode="";
+          
+          //HOW TO GET HEX-UNICODE OUT OF LOOP? don't redefine with "String", also need to first initialize value
+         
+          //UTF-8
+          if (UTF.length()==2)
+          {
+        	   hexUnicode= "0x00" + UTF;
+          }
+          
+        //UTF-16
+          if (UTF.length()==4)
+          {
+        	  hexUnicode= "0x" + UTF;
+          }
+         
           
           //final output
           return hexUnicode;

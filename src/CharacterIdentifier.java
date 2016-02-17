@@ -57,11 +57,15 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 	private JButton ok = new JButton("View information");
 	String stringInput;
 	JTextArea output = new JTextArea();
+	JTextArea output2 = new JTextArea();
 	String info;
 	JLabel enter = new JLabel();
 	JTextArea filler = new JTextArea();
 	String hexU;
 	ConvertCharacter b = new ConvertCharacter();
+	String alpha;
+	String description;
+
 	
 	public CharacterIdentifier() {
 		enter.setLabelFor(field);
@@ -77,7 +81,6 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		      }
 		    }); 
 		 field.setHorizontalAlignment(SwingConstants.LEFT);
-		 
 		 field.setToolTipText("Enter character here:");  
 		 
 		 //WHAT/WHERE ARE THESE CONTAINERS?
@@ -98,7 +101,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		 JPanel fill = new JPanel();
 		 fill.add(filler);
 		 getContentPane().add(fill);
-		 character.setFont(new Font("Lucida Grande", Font.PLAIN, 30));
+		 character.setFont(new Font("Lucida Grande", Font.PLAIN, 35));
 		 largefont.add(character);
 		 getContentPane().add(largefont);
 		 enter.setBackground(Color.LIGHT_GRAY);
@@ -117,6 +120,7 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 		 output.setLineWrap(true);
 		 output.setEditable(false);
 		 getContentPane().add(output, BorderLayout.CENTER);
+		 
 		
 	}
 	 
@@ -130,38 +134,34 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 
 		    	    if (src == ok) 
 		    	    {	
-		    	    	
-		    	    	
 		    	    	stringInput = field.getText(); 
 			    	    char input = stringInput.charAt(0);
-			    	    System.out.println(input);
-			    	    character.setText("Character in larger font: " + stringInput);
+			    	    System.out.println("from button listener, input: " + input);
+			    	    character.setText("Character in larger font: " + "\n" + "\n" + "                 " + stringInput + "\n" + "\n");
 			    	    character.setVisible(true);
+			    	
 			    	   
 			    	    CharacterIdentifier categories = new CharacterIdentifier();
-			    	    categories.run();
+			    	    categories.run(input);
 			    	    
-			    	    hexU = b.getHex(input);
-						System.out.println("hex u" + hexU);
-						System.out.println(input);
-						
-						
+			    	  //information independent of CSV file
 		    	        ConvertCharacter a = new ConvertCharacter();
-		    	        info = a.convert(input);
-		    	        output.setText("Here is the information regarding the character \"" + input + "\"" + "\n" + info);
-		    	        output.setFont(new Font("Lucida Grande", Font.PLAIN, 18));
+		    	        info = a.convert(input) + "\n   " + alpha + "\n   " + description;
+		    	        output.setText("\n" + "   Here is the information regarding the character \"" + input + "\"" + "\n" + info);
+		    	        output.setFont(new Font("Lucida Grande", Font.PLAIN, 22));
 		    	        output.setBackground(Color.WHITE);
-		    	        //System.out.println(a.convert(input));
-		    	        System.out.println("hex u" + hexU);
+		    	       
 		    	    }
 		    }
 	 }
 	  
 	//function to read CSV file and print out contents
-	  public void run() {
+	  public void run(char input) {
 		
-		//file to be parsed
-		String csvFile = "/Users/mzyin/Downloads/com/mindprod/entities/entityfacts.csv";
+		//get hex of input
+		hexU = b.getHex(input);
+		System.out.println("from run function " + hexU);
+		String csvFile = "/Users/mzyin/Desktop/entityfacts.csv";
 		BufferedReader br = null;
 		//String SplitBy = ",";
 		
@@ -171,8 +171,6 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 			br = new BufferedReader(new FileReader(csvFile));
 			String line;
 			
-			//ConvertCharacter b = new ConvertCharacter();
-			
 			//read file line by line until there is nothing to read 
 			while ((line = br.readLine()) != null) 
 				{
@@ -181,20 +179,41 @@ public class CharacterIdentifier extends JFrame implements ActionListener
 				String[] category = line.split(",");
 				
 				//get input, get hex
-				CharacterIdentifier c = new CharacterIdentifier();
-				hexU = b.getHex(input);
-				//System.out.println("hex u" + hexU);
-				System.out.println(hexU);
+				//CharacterIdentifier c = new CharacterIdentifier();
+				//hexU = b.getHex(input);
+				//System.out.println("from try function" + hexU);
 				
-				if (category[1]==hexU)
+				//remove white space
+				category[1] = category[1].replaceAll("\\s","");
+				category[3] = category[3].replaceAll("\\s","");
+				category[4] = category[4].trim();
+				//System.out.println(category[1]);
+				
+				//compare
+				if (category[1].equals(hexU))
 				{
-					System.out.println("alpha entity:" + category[3]);
-					System.out.println("description:" + category[4]);
+					//if no alpha entity
+					if (category[3].equals(""))
+					{
+						System.out.println("alpha entity:" + " none");
+						System.out.println("description:" + category[4]);
+						alpha = "alpha entity: none";
+						break;
+						
+					}
+					
+					else
+					
+					{
+					alpha = ("alpha entity:" + category[3]);
+					description = ("description:" + category[4]);
+					System.out.println(alpha + "\n" + description);
 					break;
+					}
 				}
 				
 				
-				
+				//to test see if can access appropriate columns of CSV file
 				/*if (category.length==2)
 				{
 					System.out.println("hex:" + category[1]);
