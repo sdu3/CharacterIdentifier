@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 	/*
-	 * this code just sets up the frame
+	 * unfortunately this code is not actually used since the frame/panels are created in CharacterIdentifier
 	 */
 public class Frame extends JFrame
 {
@@ -25,6 +25,7 @@ public class Frame extends JFrame
 	    this.setVisible(true);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  }
+	  
 
 }
 
