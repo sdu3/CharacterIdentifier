@@ -1,13 +1,6 @@
-# entities
-# W3C table at http://www.whatwg.org/specs/web-apps/current-work/multipage/named-character-references.html#named-character-references
-# l=lower case Latin L=upper case Latin (alpha accents) g=lower case Greek G=upper case Greek c Cyrillic lower case C Cyrillic Upper case.
-# a=arrow b=blank d=diacritical mark m=music s=symbol 4=html4 5=html5 p=proposed n=not an entity X=XHTML o=ordinary char, does not need entity.
-# $=currency
-# desc has no entities whereas notesdoes.
-# normally sorted by entity, hex, desc, categories
 ## categories, hex, overstrike, alpha entity,              description,                                                                 notes
-o4,    0x20,    ,       ,                                  "ordinary space",                                                            "&rarr; &larr;"
-$o,    0x00a2,  ,       ,                                  "cent sign"
+o4,    0x20,    none,   none,                              "ordinary space",                                                            "&rarr; &larr;"
+$o,    0x00a2,  none,   none,                              "cent sign"
 $o,    0x00a3,  ,       ,                                  "pound sign"
 $o,    0x00a4,  ,       ,                                  "currency sign"
 $o,    0x00a5,  ,       ,                                  "yen sign"
